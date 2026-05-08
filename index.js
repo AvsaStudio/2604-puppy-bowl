@@ -9,12 +9,10 @@ const TEAMS_API = BASE + COHORT + TEAMS;
 
 // ==State==
 
-// Create an empty players array
 let players = [];
-// Create an empty teams array
 let teams = [];
-// Create selectedPuppyId and set it to null
 let selectedPuppyId = null;
+let selectedPuppy = null;
 
 // ==state-changing Functions ==
 
