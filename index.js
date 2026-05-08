@@ -17,10 +17,9 @@ let selectedPuppy = null;
 // ==state-changing Functions ==
 
 // Create selectPuppyfunction
-function selectPuppy(id) {
+async function selectPuppy(id) {
   selectedPuppyId = id;
-
-  render();
+  await getPlayers(id);
 }
 
 //Create getPlayers async function
