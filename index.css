@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  background: rgb(244, 149, 53);
+  color: rgb(255, 232, 196);
+}
+
+main {
+  width: min(70rem, 100% - 2rem);
+  margin: 0cap;
+  padding: 2rem 0;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  padding: 5rem;
+}
+
+.page-title::before {
+  content: "";
+  position: fixed;
+  left: 25rem;
+  width: 20rem;
+  height: 20rem;
+  background: url("./img/paws.png") center / contain repeat;
+  opacity: 0.5;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.new-puppy-form {
+  display: grid;
+  gap: 1rem;
+  background: rgb(94, 53, 22);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.new-puppy-form label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  padding: 0.7rem;
+  border: 0.1rem solid #ccc;
+}
+
+button {
+  cursor: pointer;
+  background: white;
+}
+
+.selected-puppy {
+  background: rgb(151, 82, 21);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+.selected-puppy img {
+  width: min(20rem, 100%);
+  border-radius: 1rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.puppy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
+}
+
+.puppy-card {
+  text-align: center;
+  background: rgb(254, 243, 162);
+  border-radius: 1rem;
+}
+
+.puppy-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 0.8rem;
+}
+
+puppy-card h2 {
+  margin: 0.7rem 0 0;
+  font-size: 2.1rem;
+}
+
+.puppy-card.selected {
+  border-color: #ff8e1d;
+  outline: 0.2rem solid #c88f8f;
+}
