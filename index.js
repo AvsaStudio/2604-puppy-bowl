@@ -40,6 +40,19 @@ async function getPlayers() {
   }
 }
 
+async function getPlayer(id) {
+  try {
+    const response = await fetch(`${PLAYERS_API}/${id}`);
+    const result = await response.json();
+
+    selectedPuppy = result.data.player;
+
+    render();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 // Create getTeams async function
 // Fetch all teams from the teams API
 // Convert response into JSON
@@ -126,8 +139,6 @@ function PuppyHeader() {
 function SelectedPuppy() {
   const $section = document.createElement("section");
   $section.classList.add("selected-puppy");
-
-  const selectedPuppy = players.find((puppy) => puppy.id === selectedPuppyId);
 
   if (!selectedPuppy) {
     $section.innerHTML = `
