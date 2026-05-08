@@ -97,6 +97,7 @@ async function addPuppy(puppy) {
 // Send DELETE request tot he players API with that id
 // Set selectedPuppyId back to null
 // Fetch players again so the screen updates
+
 async function removePuppy(id) {
   try {
     await fetch(`${PLAYERS_API}/${id}`, {
@@ -104,6 +105,7 @@ async function removePuppy(id) {
     });
 
     selectedPuppyId = null;
+    selectedPuppy = null;
 
     await getPlayers();
   } catch (error) {
