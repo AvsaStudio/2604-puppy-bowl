@@ -12,14 +12,13 @@ const TEAMS_API = BASE + COHORT + TEAMS;
 let players = [];
 let teams = [];
 let selectedPuppyId = null;
-let selectedPuppy = null;
 
 // ==state-changing Functions ==
 
 // Create selectPuppyfunction
-async function selectPuppy(id) {
+function selectPuppy(id) {
   selectedPuppyId = id;
-  await getPlayers(id);
+  render();
 }
 
 //Create getPlayers async function
@@ -33,19 +32,6 @@ async function getPlayers() {
     const result = await response.json();
 
     players = result.data.players;
-
-    render();
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function getPlayer(id) {
-  try {
-    const response = await fetch(`${PLAYERS_API}/${id}`);
-    const result = await response.json();
-
-    selectedPuppy = result.data.player;
 
     render();
   } catch (error) {
@@ -105,7 +91,6 @@ async function removePuppy(id) {
     });
 
     selectedPuppyId = null;
-    selectedPuppy = null;
 
     await getPlayers();
   } catch (error) {
@@ -120,10 +105,13 @@ async function removePuppy(id) {
 // Add text "Puppy Bowl"
 // Return the h1
 function PuppyHeader() {
-  const $h1 = document.createElement("h1");
-  $h1.classList.add("page-title");
-  $h1.textContent = "Puppy Bowl";
-  return $h1;
+  const $header = document.createElement("div");
+
+  $header.innerHTML = `
+    <h1 class="page-title">Puppy Bowl</h1>
+  `;
+
+  return $header.firstElementChild;
 }
 
 // Create SelectedPuppy component
@@ -142,6 +130,8 @@ function SelectedPuppy() {
   const $section = document.createElement("section");
   $section.classList.add("selected-puppy");
 
+  const selectedPuppy = players.find((puppy) => puppy.id === selectedPuppyId);
+
   if (!selectedPuppy) {
     $section.innerHTML = `
         <h2>Selected Puppy</h2>
@@ -151,8 +141,7 @@ function SelectedPuppy() {
     return $section;
   }
 
-  const puppyTeam = teams.find((team) => team.id === selectedPuppy.teamId);
-  const teamName = puppyTeam ? puppyTeam.name : "Unassigned";
+  const teamName = selectedPuppy.team ? selectedPuppy.team.name : "Unassigned";
 
   $section.innerHTML = `
     <h2>${selectedPuppy.name}</h2>
